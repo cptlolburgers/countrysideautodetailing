@@ -240,6 +240,12 @@
       opacity: 0.04;
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 130'%3E%3Cpath d='M40 105 L45 80 L58 68 L75 62 L90 58 L110 55 L190 55 L210 58 L225 62 L240 65 L255 72 L265 85 L270 95 L268 103 L258 108 L245 110 L55 110 L42 108 Z' fill='%23c41e2a'/%3E%3Ccircle cx='100' cy='110' r='16' fill='%23c41e2a'/%3E%3Ccircle cx='210' cy='110' r='16' fill='%23c41e2a'/%3E%3C/svg%3E") no-repeat center / contain;
     }
+    .hero-logo {
+      display: block;
+      margin: 0 auto 16px;
+      width: 80px;
+      height: auto;
+    }
     .hero-content { position: relative; z-index: 2; padding: 120px 24px 80px; }
     .hero-content .overline {
       font-size: 0.75rem;
@@ -623,16 +629,17 @@
       padding: 120px 0;
       background: #0f0d0a;
       position: relative;
-      overflow: hidden;
     }
+    .testimonials .container { position: relative; }
+    .testimonial-wrap { position: relative; }
     .testimonial-slider {
       display: flex;
       gap: 30px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 20px;
       scrollbar-width: none;
+      scroll-behavior: auto;
     }
     .testimonial-slider::-webkit-scrollbar { display: none; }
     .testimonial-card {
@@ -661,6 +668,26 @@
       font-weight: 500;
       font-size: 0.9rem;
     }
+    .test-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px; height: 28px;
+      border: none;
+      background: none;
+      color: #a09888;
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.3s;
+    }
+    .test-arrow:hover { color: #f0ede8; }
+    .test-arrow-left { left: 0; }
+    .test-arrow-right { right: 0; }
     .testimonial-card .car-model {
       font-size: 0.75rem;
       color: #6a6258;
@@ -801,6 +828,7 @@
       footer .container { flex-direction: column; text-align: center; gap: 12px; }
     }
     @media (max-width: 480px) {
+      .test-arrow { display: none; }
       .hero-content h1 { font-size: 2rem; }
       .section-title { font-size: 1.6rem; }
       .hero-badges { flex-direction: column; gap: 14px; align-items: center; }
@@ -835,6 +863,7 @@
     <div class="bg-car" style="width:40%;height:40%;top:10%;left:-5%;opacity:0.04;"></div>
     <div class="bg-car" style="width:25%;height:25%;bottom:5%;right:2%;opacity:0.03;"></div>
     <div class="container hero-content">
+      <img src="/images/logo.png" alt="Countryside Auto Detailing" class="hero-logo" />
       <h1 class="reveal visible">
         Countryside <em>Auto Detailing</em>
       </h1>
@@ -1048,9 +1077,11 @@
   <section class="testimonials" id="testimonials">
     <div class="bg-car" style="width:20%;height:20%;bottom:10%;right:-4%;opacity:0.025;transform:rotate(5deg);"></div>
     <div class="container">
-      <span class="section-label reveal">Testimonials</span>
+      <span class="section-label reveal">Reviews</span>
       <h2 class="section-title reveal">What Our <span class="gold">Clients Say</span></h2>
-      <div class="testimonial-slider reveal" id="testimonialSlider">
+      <div class="testimonial-wrap">
+        <button class="test-arrow test-arrow-left" id="testArrowLeft">‹</button>
+        <div class="testimonial-slider reveal" id="testimonialSlider">
         <div class="testimonial-card">
           <div class="quote">"</div>
           <div class="stars">★★★★★</div>
@@ -1080,6 +1111,7 @@
           <div class="car-model">Lamborghini Urus</div>
         </div>
       </div>
+        <button class="test-arrow test-arrow-right" id="testArrowRight">›</button>
     </div>
   </section>
 
@@ -1111,7 +1143,7 @@
       <div class="socials">
         <a href="https://share.google/pKRyIuTthyEMsRUlI">Google Reviews</a>
         <a href="https://www.instagram.com/countrysideautodetail" target="_blank">Instagram</a>
-        <a href="https://www.facebook.com/countrysideautodetail" target="_blank">Facebook</a>
+        <a href="https://www.facebook.com/profile.php?id=61591196199835" target="_blank">Facebook</a>
       </div>
     </div>
   </footer>
@@ -1147,40 +1179,18 @@
     );
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // ---- Auto-scroll testimonials ----
+    // ---- Testimonial arrows ----
     (function() {
       var slider = document.getElementById('testimonialSlider');
       if (!slider) return;
+      var step = slider.querySelector('.testimonial-card').offsetWidth + 30;
 
-      // Override CSS smooth-scroll so manual crawl works
-      slider.style.scrollBehavior = 'auto';
-
-      var card = slider.querySelector('.testimonial-card');
-      if (!card) return;
-      var step = card.offsetWidth + 30;
-      var maxScroll = slider.scrollWidth - slider.clientWidth;
-      var snapActive = false;
-
-      // Slow continuous crawl
-      setInterval(function() {
-        if (snapActive) return;
-        slider.scrollLeft += 0.3;
-        if (slider.scrollLeft >= maxScroll - 5) slider.scrollLeft = 0;
-      }, 16);
-
-      // Snap to next card every 5 seconds
-      function doSnap() {
-        if (snapActive) return;
-        var cur = slider.scrollLeft;
-        var nxt = cur + step;
-        if (nxt >= maxScroll) nxt = 0;
-        snapActive = true;
-        slider.scrollTo({ left: nxt, behavior: 'smooth' });
-        // Wait for smooth scroll to finish, then resume crawl
-        setTimeout(function() { snapActive = false; }, 1500);
-      }
-
-      setInterval(doSnap, 5000);
+      document.getElementById('testArrowLeft').addEventListener('click', function() {
+        slider.scrollBy({ left: -step, behavior: 'smooth' });
+      });
+      document.getElementById('testArrowRight').addEventListener('click', function() {
+        slider.scrollBy({ left: step, behavior: 'smooth' });
+      });
     })();
   </script>
 </body>
