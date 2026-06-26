@@ -13,7 +13,8 @@
       "Bash(curl -sL -o favicon.ico \"https://realfavicongenerator.net/files/a19cd0f5-c661-44d5-a83d-c94fcd820d36/favicon.ico\")",
       "Bash(curl -sL -o apple-touch-icon.png \"https://realfavicongenerator.net/files/a19cd0f5-c661-44d5-a83d-c94fcd820d36/apple-touch-icon.png\")",
       "Bash(curl -sL -o web-app-manifest-192x192.png \"https://realfavicongenerator.net/files/a19cd0f5-c661-44d5-a83d-c94fcd820d36/web-app-manifest-192x192.png\")",
-      "WebFetch(domain:countrysidedetail.com)"
+      "WebFetch(domain:countrysidedetail.com)",
+      "Bash(xxd)"
     ]
   }
 }
