@@ -57,10 +57,13 @@ Single-page mobile-responsive HTML website for a luxury mobile auto detailing bu
 - **Canonical URL:** https://countrysidedetail.com/
 - **Next priority:** Add real gallery photos with alt text, link Google Business Profile
 
-## Deployment
-- **Recommended:** Cloudflare Pages (free, CDN, auto SSL, custom domain)
-- **Alternative:** Netlify or GitHub Pages
-- Push to git repo → connect to Cloudflare Pages → point countrysidedetail.com DNS
+## Git & Publishing Workflow
+- **GitHub:** https://github.com/cptlolburgers/countrysideautodetailing
+- **Branch:** `main` (primary branch)
+- **Hosting:** Cloudflare Pages (auto-deploys from GitHub on every push to `main`)
+- **Publish changes:** `git add -A && git commit -m "message" && git push`
+- **Excluded from git:** `startclaudedeepseek.ps1` (local dev script, has API key via env var)
+- **Secret safety:** Never hardcode API keys in committed files — GitHub push protection will reject it
 
 ## Brand Details
 - **Business name:** Countryside Auto Detailing
