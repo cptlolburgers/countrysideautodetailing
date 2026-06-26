@@ -241,10 +241,9 @@
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 130'%3E%3Cpath d='M40 105 L45 80 L58 68 L75 62 L90 58 L110 55 L190 55 L210 58 L225 62 L240 65 L255 72 L265 85 L270 95 L268 103 L258 108 L245 110 L55 110 L42 108 Z' fill='%23c41e2a'/%3E%3Ccircle cx='100' cy='110' r='16' fill='%23c41e2a'/%3E%3Ccircle cx='210' cy='110' r='16' fill='%23c41e2a'/%3E%3C/svg%3E") no-repeat center / contain;
     }
     .hero-logo {
-      display: block;
-      margin: 0 auto 16px;
-      width: min(300px, 60vw);
+      max-width: min(500px, 90vw);
       height: auto;
+      display: block;
     }
     .hero-content { position: relative; z-index: 2; padding: 120px 24px 80px; }
     .hero-content .overline {
@@ -863,9 +862,8 @@
     <div class="bg-car" style="width:40%;height:40%;top:10%;left:-5%;opacity:0.04;"></div>
     <div class="bg-car" style="width:25%;height:25%;bottom:5%;right:2%;opacity:0.03;"></div>
     <div class="container hero-content">
-      <img src="/images/logo.png" alt="Countryside Auto Detailing" class="hero-logo" />
       <h1 class="reveal visible">
-        Countryside <em>Auto Detailing</em>
+        <img src="/images/logo.png" alt="Countryside Auto Detailing" class="hero-logo" />
       </h1>
       <p class="reveal visible">
         Professional hand-wash, deep interior shampoo, and full detail packages,
