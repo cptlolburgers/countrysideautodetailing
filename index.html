@@ -450,6 +450,62 @@
       display: block;
       margin-bottom: 16px;
     }
+    .service-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      height: 100%;
+    }
+    .service-subcard {
+      background: #0f0d0a;
+      padding: 28px 28px;
+      flex: 1;
+      transition: background 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-subcard::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: #c41e2a;
+      transition: height 0.5s ease;
+    }
+    .service-subcard:hover::before { height: 100%; }
+    .service-subcard:hover { background: #14120e; }
+    .service-subcard h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .service-subcard ul {
+      list-style: none;
+    }
+    .service-subcard ul li {
+      font-size: 0.85rem;
+      color: #a09888;
+      padding: 3px 0;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .service-subcard ul li::before {
+      content: '›';
+      position: absolute;
+      left: 4px;
+      color: #c41e2a;
+      font-weight: 700;
+    }
+    .service-subcard .price {
+      font-size: 1rem;
+      color: #c41e2a;
+      letter-spacing: 1px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 10px;
+    }
     .pricing-note {
       font-size: 0.8rem;
       color: #6a6258;
@@ -855,28 +911,31 @@
           <ul>
             <li>High-pressure rinse</li>
             <li>Foam hand wash &amp; towel dry</li>
-            <li>Full vacuum of seats, carpets &amp; mats</li>
+            <li>Full vacuum of seats, carpets, mats &amp; trunk</li>
             <li>Quick wipe-down of dashboard &amp; center console</li>
             <li>Clean glass inside and out</li>
           </ul>
         </div>
-        <div class="service-card">
-          <span class="icon">◈</span>
-          <h3>Vacuum <em>or</em> Wash</h3>
-          <span class="price">$25 – $40</span>
-          <p class="service-subtitle" style="color:#c41e2a;font-weight:600;margin-top:12px;">Vacuum Only</p>
-          <ul>
-            <li>Thorough vacuum of front/rear carpets, seats &amp; trunk</li>
-            <li>Floor mats removed, shaken out &amp; vacuumed</li>
-            <li>Quick dust-off of steering wheel &amp; dashboard</li>
-          </ul>
-          <p class="service-subtitle" style="color:#c41e2a;font-weight:600;margin-top:16px;">Wash Only</p>
-          <ul>
-            <li>High-pressure rinse</li>
-            <li>Foam hand wash</li>
-            <li>Wheel wipe</li>
-            <li>Streak-free towel dry</li>
-          </ul>
+        <div class="service-stack">
+          <div class="service-subcard">
+            <h3>Vacuum Only</h3>
+            <span class="price">$25 – $40</span>
+            <ul>
+              <li>Thorough vacuum of front/rear carpets, seats &amp; trunk</li>
+              <li>Floor mats removed, shaken out &amp; vacuumed</li>
+              <li>Quick dust-off of steering wheel &amp; dashboard</li>
+            </ul>
+          </div>
+          <div class="service-subcard">
+            <h3>Wash Only</h3>
+            <span class="price">$25 – $40</span>
+            <ul>
+              <li>High-pressure rinse</li>
+              <li>Foam hand wash</li>
+              <li>Wheel wipe</li>
+              <li>Streak-free towel dry</li>
+            </ul>
+          </div>
         </div>
       </div>
       <p class="pricing-note reveal">* Price varies based on vehicle size, dirt levels, and transportation requirements. Final pricing determined upon physical vehicle inspection.</p>
