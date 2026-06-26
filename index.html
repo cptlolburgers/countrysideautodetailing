@@ -243,9 +243,11 @@
     .hero-logo {
       max-width: min(430px, 80vw);
       height: auto;
-      display: inline-block;
-      vertical-align: middle;
+      display: block;
+      margin: 0 auto;
     }
+    .hero-content { text-align: center; }
+    .hero-content p { margin-left: auto; margin-right: auto; }
     .hero-content { position: relative; z-index: 2; padding: 120px 24px 80px; }
     .hero-content .overline {
       font-size: 0.75rem;
@@ -864,7 +866,7 @@
     <div class="bg-car" style="width:25%;height:25%;bottom:5%;right:2%;opacity:0.03;"></div>
     <div class="container hero-content">
       <h1 class="reveal visible">
-        <img src="/images/logo.png" alt="Countryside Auto Detailing" class="hero-logo" /> <em>Auto Detailing</em>
+        <img src="/images/logo.png" alt="Countryside Auto Detailing" class="hero-logo" />
       </h1>
       <p class="reveal visible">
         Professional hand-wash, deep interior shampoo, and full detail packages,
