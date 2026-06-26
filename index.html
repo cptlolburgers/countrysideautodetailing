@@ -249,7 +249,7 @@
       width: 60%;
       height: 70%;
       opacity: 0.08;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Cpath d='M200 300 L250 180 L320 160 L500 160 L530 162 L545 175 L560 175 L570 180 L580 180 L620 220 L700 220 L720 260 L700 280 L620 280 L580 300 L200 300Z' fill='%23c41e2a'/%3E%3C/svg%3E") no-repeat center / contain;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Cpath d='M200 300 L245 185 L260 172 L272 168 L285 172 L320 160 L500 160 L530 162 L548 174 L562 174 L572 180 L580 180 L620 220 L700 220 L720 260 L700 280 L620 280 L580 300 L200 300Z' fill='%23c41e2a'/%3E%3C/svg%3E") no-repeat center / contain;
     }
     .hero-content { position: relative; z-index: 2; padding: 120px 24px 80px; }
     .hero-content .overline {
@@ -685,8 +685,11 @@
       .container { padding: 0 24px; }
       section { padding: 80px 0 !important; }
       .hero { min-height: 0; align-items: flex-start; }
-      .hero-bg-car { left: 50%; transform: translateX(-50%); right: auto; width: 80%; }
-      .hero-content { padding: 100px 24px 60px !important; }
+      .hero-bg-car { left: auto; right: -8%; transform: none; width: 55%; bottom: -5%; }
+      .hero-content { padding: 100px 24px 60px !important; text-align: center; }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      .hero-content .btn-primary { margin: 0 auto; }
+      .hero-badges { justify-content: center; }
       .gallery-grid { gap: 2px; padding: 0 24px; }
       body { overflow-x: hidden; }
 
@@ -732,7 +735,7 @@
     @media (max-width: 480px) {
       .hero-content h1 { font-size: 2rem; }
       .section-title { font-size: 1.6rem; }
-      .hero-badges { flex-direction: column; gap: 14px; }
+      .hero-badges { flex-direction: column; gap: 14px; align-items: center; }
       .hero-badges div { font-size: 0.85rem; }
       .gallery-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
       .gallery-item { aspect-ratio: 1; }
