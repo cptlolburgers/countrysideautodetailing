@@ -481,7 +481,7 @@
     .step:not(:last-child)::after {
       content: '';
       position: absolute;
-      top: 28px; right: -20px;
+      top: 28px; right: -40px;
       width: 40px; height: 1px;
       background: rgba(196,30,42,0.2);
     }
@@ -715,6 +715,7 @@
       .services-grid { grid-template-columns: 1fr; }
       .service-card { padding: 36px 24px; }
       .steps { grid-template-columns: 1fr; gap: 28px; }
+      .step:not(:last-child)::after { display: none; }
       .step { max-width: 320px; margin: 0 auto; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-item { aspect-ratio: 4/3; }
@@ -892,22 +893,22 @@
       </p>
       <div class="steps reveal">
         <div class="step">
-          <div class="step-num">01</div>
+          <div class="step-num">1</div>
           <h4>Book &amp; Consult</h4>
           <p>Tell us about your vehicle and goals. We'll recommend the right package and schedule a convenient time.</p>
         </div>
         <div class="step">
-          <div class="step-num">02</div>
+          <div class="step-num">2</div>
           <h4>We Come to You</h4>
           <p>We arrive at your location on schedule with all our professional-grade equipment and products.</p>
         </div>
         <div class="step">
-          <div class="step-num">03</div>
+          <div class="step-num">3</div>
           <h4>Detail &amp; Inspect</h4>
           <p>We work through our full checklist, inspecting every surface before sign-off.</p>
         </div>
         <div class="step">
-          <div class="step-num">04</div>
+          <div class="step-num">4</div>
           <h4>Enjoy the Shine</h4>
           <p>Your car is delivered showroom-ready. We provide a care guide and follow up to ensure lasting results.</p>
         </div>
