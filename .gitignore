@@ -1,0 +1,11 @@
+# OS files
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+
+# Claude session memory (personal context)
+.claude/memory/
+
+# Local dev scripts
+startclaudedeepseek.ps1
