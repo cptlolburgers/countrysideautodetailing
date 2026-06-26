@@ -7,6 +7,7 @@ Single-page mobile-responsive HTML website for a luxury mobile auto detailing bu
 - **Live URL:** https://countrysidedetail.com
 - **Phone:** (770) 286-6659
 - **Email:** clean@countrysidedetail.com
+- **Google Business Profile:** https://share.google/pKRyIuTthyEMsRUlI
 
 ## Tech Stack
 - Pure HTML / CSS / JS — zero dependencies, no build step
