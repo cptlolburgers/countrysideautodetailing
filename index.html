@@ -30,11 +30,22 @@
     "areaServed": [
       { "@type": "City", "name": "Alpharetta" },
       { "@type": "City", "name": "Atlanta" },
+      { "@type": "City", "name": "Brookhaven" },
       { "@type": "City", "name": "Buckhead" },
+      { "@type": "City", "name": "Cumming" },
+      { "@type": "City", "name": "Dunwoody" },
       { "@type": "City", "name": "Johns Creek" },
-      { "@type": "City", "name": "Sandy Springs" },
+      { "@type": "City", "name": "Kennesaw" },
+      { "@type": "City", "name": "Marietta" },
       { "@type": "City", "name": "Milton" },
-      { "@type": "City", "name": "Roswell" }
+      { "@type": "City", "name": "Norcross" },
+      { "@type": "City", "name": "Peachtree Corners" },
+      { "@type": "City", "name": "Roswell" },
+      { "@type": "City", "name": "Sandy Springs" },
+      { "@type": "City", "name": "Smyrna" },
+      { "@type": "City", "name": "Suwanee" },
+      { "@type": "City", "name": "Vinings" },
+      { "@type": "City", "name": "Woodstock" }
     ],
     "priceRange": "$$$",
     "address": {
@@ -174,7 +185,10 @@
       display: flex;
       align-items: center;
       line-height: 1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
+    nav.scrolled .logo { opacity: 1; }
     .logo img {
       height: 42px;
       width: auto;
@@ -602,7 +616,7 @@
     .gallery-header { margin-bottom: 48px; }
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 4px;
     }
     .gallery-item {
@@ -624,7 +638,6 @@
     .gallery-item:hover .placeholder-icon {
       opacity: 0.25;
     }
-    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
     .gallery-item img, .gallery-item picture {
       width: 100%; height: 100%;
       object-fit: cover;
@@ -732,23 +745,114 @@
     }
     .cta .section-title { margin-bottom: 16px; }
     .cta .section-sub { margin: 0 auto 40px; }
+    .booking-form {
+      max-width: 560px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .booking-form select,
+    .booking-form input {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      background: #14120e;
+      border: 1px solid rgba(240,237,232,0.1);
+      color: #f0ede8;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .booking-form select:focus,
+    .booking-form input:focus {
+      border-color: #c41e2a;
+    }
+    .booking-form select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c41e2a' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    .booking-form select option {
+      background: #14120e;
+      color: #f0ede8;
+    }
+    .booking-form .form-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .booking-form .btn {
+      justify-content: center;
+      width: 100%;
+      margin-top: 4px;
+    }
+    .form-success {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 1.05rem;
+      color: #f0ede8;
+      line-height: 1.6;
+    }
+    .cta-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #6a6258;
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+    .cta-questions {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #a09888;
+      margin-bottom: 14px;
+    }
     .cta-buttons {
       display: flex;
-      gap: 20px;
+      gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .form-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 560px;
+      margin: 28px auto 8px;
+    }
+    .form-divider::before,
+    .form-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(240,237,232,0.08);
+    }
+    .form-divider span {
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #b0a89a;
+      white-space: nowrap;
     }
     .cta-contact {
-      margin-top: 40px;
-      font-size: 0.9rem;
+      margin-top: 28px;
+      font-size: 0.85rem;
       color: #6a6258;
+      text-align: center;
     }
-    .cta-contact a {
+    .cta-contact a:not(.btn) {
       color: #c41e2a;
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s;
     }
-    .cta-contact a:hover { border-color: #c41e2a; }
+    .cta-contact a:not(.btn):hover { border-color: #c41e2a; }
+    .service-card { cursor: pointer; }
 
     /* ===== FOOTER ===== */
     footer {
@@ -757,39 +861,43 @@
     }
     footer .container {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
+    }
+    footer .container > * {
+      flex: 1;
+    }
+    footer .socials {
+      justify-content: center;
     }
     .footer-memorial {
       font-size: 0.8rem;
       color: #6a6258;
       font-style: italic;
-    }
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      gap: 16px;
+      text-align: right;
+      line-height: 1.6;
     }
     footer .copyright {
       font-size: 0.8rem;
       color: #6a6258;
-      order: -1;
     }
     footer .socials {
       display: flex;
-      gap: 24px;
+      gap: 16px;
+      align-items: center;
     }
-    footer .socials a {
-      font-size: 0.75rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #6a6258;
-      transition: color 0.3s;
+    footer .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    footer .socials a:hover { color: #c41e2a; }
+    footer .social-icon img {
+      filter: brightness(0) saturate(100%) invert(42%);
+      transition: filter 0.3s;
+    }
+    footer .social-icon:hover img {
+      filter: brightness(0) saturate(100%) invert(55%);
+    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
@@ -798,7 +906,6 @@
       .steps { grid-template-columns: repeat(2, 1fr); }
       .step:not(:last-child)::after { display: none; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item:nth-child(1) { grid-column: span 1; grid-row: span 1; }
     }
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
@@ -845,12 +952,15 @@
       .hero-badges div { font-size: 0.8rem; }
       .hero-badges .badge-icon { width: 30px; height: 30px; min-width: 30px; font-size: 0.7rem; }
 
+      .booking-form .form-split { grid-template-columns: 1fr; }
+      .form-divider span { white-space: normal; }
       .cta-buttons { flex-direction: column; align-items: center; }
       .cta-buttons .btn { width: 100%; max-width: 320px; justify-content: center; }
       .section-sub { max-width: 100%; }
 
-      .footer-bottom { flex-direction: column; text-align: center; }
-      .footer-bottom .copyright { order: 0; }
+      footer .container { flex-direction: column; align-items: center; text-align: center; gap: 14px; }
+      .footer-memorial { text-align: center; }
+      footer .socials { order: 0; }
     }
     @media (max-width: 480px) {
       .test-arrow { display: none; }
@@ -862,6 +972,50 @@
       .gallery-item { aspect-ratio: 1; }
       .btn { padding: 14px 28px; font-size: 0.8rem; }
     }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+    }
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 0 80px rgba(0,0,0,0.6);
+      cursor: default;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: #f0ede8;
+      font-size: 1.6rem;
+      line-height: 44px;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.18); }
   </style>
 </head>
 <body>
@@ -931,7 +1085,7 @@
           We don't consider a job complete until the paint reads zero contaminants
           and every surface is restored to its original luster.
         </p>
-        <div class="about-signature">Zane, Josh &amp; Dustin — Founders</div>
+        <div class="about-signature">Zane, Josh &amp; Dustin, Founders</div>
       </div>
     </div>
   </section>
@@ -946,7 +1100,7 @@
         No upselling, no confusion. Pick the level of clean you need.
       </p>
       <div class="services-grid reveal">
-        <div class="service-card featured">
+        <div class="service-card featured" data-package="Full Detail">
           <span class="badge">Most Popular</span>
           <div class="card-head"><h3>Full Detail</h3><span class="icon">✦</span></div>
           <span class="price">$250 – $300</span>
@@ -968,7 +1122,7 @@
             <li>Interior &amp; exterior windows cleaned</li>
           </ul>
         </div>
-        <div class="service-card">
+        <div class="service-card" data-package="Quick Wash & Vac">
           <div class="card-head"><h3>Quick Wash &amp; Vac</h3><span class="icon">◈</span></div>
           <span class="price">$45 – $60</span>
           <p class="service-subtitle">Exterior:</p>
@@ -987,7 +1141,7 @@
           </ul>
         </div>
         <div class="service-stack">
-          <div class="service-subcard">
+          <div class="service-subcard" data-package="Vacuum Only">
             <div class="card-head"><h3>Vacuum Only</h3><span class="icon">◆</span></div>
             <span class="price">$25 – $40</span>
             <ul>
@@ -998,7 +1152,7 @@
               <li>Quick dust-off of steering wheel &amp; dashboard</li>
             </ul>
           </div>
-          <div class="service-subcard">
+          <div class="service-subcard" data-package="Wash Only">
             <div class="card-head"><h3>Wash Only</h3><span class="icon">◇</span></div>
             <span class="price">$25 – $40</span>
             <ul>
@@ -1059,40 +1213,19 @@
     </div>
       <div class="gallery-grid reveal">
         <div class="gallery-item">
-          <picture>
-            <source srcset="https://placehold.co/800x600/161616/c41e2a?text=Full+Detail&font=inter" type="image/webp" />
-            <img src="https://placehold.co/800x600/161616/c41e2a?text=Full+Detail&font=inter" alt="Full exterior detail result on a luxury sedan showing mirror-like paint finish - Countryside Auto Detailing Alpharetta" width="800" height="600" loading="lazy" />
-          </picture>
+          <img src="images/car-photos/car-front.jpg" alt="Professional mobile auto detailing full exterior detail on luxury vehicle with deep mirror-like gloss finish by Countryside Auto Detailing serving Alpharetta and Metro Atlanta" width="800" height="600" loading="lazy" />
         </div>
         <div class="gallery-item">
-          <picture>
-            <source srcset="https://placehold.co/400x400/161616/c41e2a?text=Interior+Shampoo&font=inter" type="image/webp" />
-            <img src="https://placehold.co/400x400/161616/c41e2a?text=Interior+Shampoo&font=inter" alt="Deep interior carpet and upholstery shampoo with steam extraction by Countryside Auto Detailing" width="400" height="400" loading="lazy" />
-          </picture>
+          <img src="images/car-photos/door.jpg" alt="Detailed door jamb and panel cleaning showing pristine results by Countryside Auto Detailing" width="400" height="400" loading="lazy" />
         </div>
         <div class="gallery-item">
-          <picture>
-            <source srcset="https://placehold.co/400x400/161616/c41e2a?text=Clay+Bar&font=inter" type="image/webp" />
-            <img src="https://placehold.co/400x400/161616/c41e2a?text=Clay+Bar&font=inter" alt="Clay bar paint decontamination process removing embedded contaminants from paint surface" width="400" height="400" loading="lazy" />
-          </picture>
+          <img src="images/car-photos/shiny-minivan.jpg" alt="Full exterior detail and paint correction on a minivan with mirror-like shine by Countryside Auto Detailing in Alpharetta" width="400" height="400" loading="lazy" />
         </div>
         <div class="gallery-item">
-          <picture>
-            <source srcset="https://placehold.co/400x400/161616/c41e2a?text=Wheels&font=inter" type="image/webp" />
-            <img src="https://placehold.co/400x400/161616/c41e2a?text=Wheels&font=inter" alt="Deep wheel and tire cleaning with professional-grade products and tire dressing application" width="400" height="400" loading="lazy" />
-          </picture>
+          <img src="images/car-photos/backseat-row.jpg" alt="Deep interior detailing of rear seating area with spotless upholstery by Countryside Auto Detailing serving Buckhead" width="400" height="400" loading="lazy" />
         </div>
         <div class="gallery-item">
-          <picture>
-            <source srcset="https://placehold.co/400x400/161616/c41e2a?text=Leather&font=inter" type="image/webp" />
-            <img src="https://placehold.co/400x400/161616/c41e2a?text=Leather&font=inter" alt="Leather seat conditioning and restoration service restoring original luster to automotive leather" width="400" height="400" loading="lazy" />
-          </picture>
-        </div>
-        <div class="gallery-item">
-          <picture>
-            <source srcset="https://placehold.co/400x400/161616/c41e2a?text=Engine+Bay&font=inter" type="image/webp" />
-            <img src="https://placehold.co/400x400/161616/c41e2a?text=Engine+Bay&font=inter" alt="Engine bay wipe-down and detailing service removing grime and restoring a clean under-hood appearance" width="400" height="400" loading="lazy" />
-          </picture>
+          <img src="images/car-photos/foot-well.jpg" alt="Thorough foot well vacuuming and carpet cleaning by Countryside Auto Detailing serving Johns Creek and Roswell" width="400" height="400" loading="lazy" />
         </div>
       </div>
   </section>
@@ -1146,12 +1279,62 @@
       <span class="section-label reveal">Book Now</span>
       <h2 class="section-title reveal">Ready for a <span class="gold">Flawless Finish</span>?</h2>
       <p class="section-sub reveal">
-        Schedule your appointment and we'll bring the showroom to your driveway.
+        Tell us what you need and we'll bring the showroom to your driveway.
       </p>
-      <div class="cta-buttons reveal">
-        <a href="tel:+17702866659" class="btn btn-primary"> Call (770) 286-6659</a>
-        <a href="mailto:clean@countrysidedetail.com" class="btn btn-outline"> Email Us</a>
+      <div class="cta-contact reveal">
+        <span class="cta-questions">Prefer to reach out directly?</span>
+        <div class="cta-buttons">
+          <a href="tel:+17702866659" class="btn btn-primary">Call (770) 286-6659</a>
+          <a href="sms:+17702866659" class="btn btn-outline">Text Us</a>
+        </div>
       </div>
+      <div class="form-divider reveal"><span>or fill out the form below</span></div>
+      <p class="cta-note reveal">We'll call you to set up an appointment that suits your needs.</p>
+      <form class="booking-form reveal" id="bookingForm" action="https://formspree.io/f/xlgybaql" method="POST">
+        <div class="form-row">
+          <select name="package" id="formPackage" required>
+            <option value="" disabled selected>Select a package…</option>
+            <option value="Full Detail">Full Detail · $250–300</option>
+            <option value="Quick Wash & Vac">Quick Wash &amp; Vac · $45–60</option>
+            <option value="Vacuum Only">Vacuum Only · $25–40</option>
+            <option value="Wash Only">Wash Only · $25–40</option>
+          </select>
+        </div>
+        <div class="form-row form-split">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="tel" name="phone" placeholder="Phone number" required />
+        </div>
+        <div class="form-row form-split">
+          <input type="email" name="email" placeholder="Email (optional)" />
+          <input type="text" name="vehicle" placeholder="Vehicle (year, make, model)" />
+        </div>
+        <div class="form-row form-split">
+          <select name="city">
+            <option value="" disabled selected>Your city…</option>
+            <option value="Alpharetta">Alpharetta</option>
+            <option value="Atlanta">Atlanta</option>
+            <option value="Brookhaven">Brookhaven</option>
+            <option value="Buckhead">Buckhead</option>
+            <option value="Cumming">Cumming</option>
+            <option value="Dunwoody">Dunwoody</option>
+            <option value="Johns Creek">Johns Creek</option>
+            <option value="Kennesaw">Kennesaw</option>
+            <option value="Marietta">Marietta</option>
+            <option value="Milton">Milton</option>
+            <option value="Norcross">Norcross</option>
+            <option value="Peachtree Corners">Peachtree Corners</option>
+            <option value="Roswell">Roswell</option>
+            <option value="Sandy Springs">Sandy Springs</option>
+            <option value="Smyrna">Smyrna</option>
+            <option value="Suwanee">Suwanee</option>
+            <option value="Vinings">Vinings</option>
+            <option value="Woodstock">Woodstock</option>
+            <option value="Other">Other Metro Atlanta</option>
+          </select>
+          <input type="text" name="notes" placeholder="Any extra notes (optional)" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
       <div class="cta-contact reveal">
         Serving Alpharetta, Buckhead, Johns Creek, Sandy Springs, Milton, Roswell, &amp; all of Metro Atlanta
       </div>
@@ -1161,17 +1344,21 @@
   <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container">
+      <div class="copyright">
+        &copy; 2026 Countryside Auto Detailing. All rights reserved.
+      </div>
       <div class="socials">
-        <a href="https://share.google/pKRyIuTthyEMsRUlI">Google Reviews</a>
-        <a href="https://www.instagram.com/countrysideautodetail" target="_blank">Instagram</a>
-        <a href="https://www.facebook.com/profile.php?id=61591196199835" target="_blank">Facebook</a>
+        <a href="https://share.google/pKRyIuTthyEMsRUlI" class="social-icon" aria-label="Google Reviews">
+          <img src="images/Google__G__logo.svg" alt="Google" width="20" height="20" />
+        </a>
+        <a href="https://www.instagram.com/countrysideautodetail" target="_blank" class="social-icon" aria-label="Instagram">
+          <img src="images/instagram-logo-facebook-2-svgrepo-com.svg" alt="Instagram" width="20" height="20" />
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61591196199835" target="_blank" class="social-icon" aria-label="Facebook">
+          <img src="images/facebook.svg" alt="Facebook" width="20" height="20" />
+        </a>
       </div>
-      <div class="footer-bottom">
-        <div class="footer-memorial">In loving memory of our co-founder, Josh, who helped build this dream.</div>
-        <div class="copyright">
-          &copy; 2026 Countryside Auto Detailing. All rights reserved.
-        </div>
-      </div>
+      <div class="footer-memorial">In loving memory of our<br>co-founder, Josh, who helped<br>build this dream.</div>
     </div>
   </footer>
 
@@ -1219,6 +1406,85 @@
         slider.scrollBy({ left: step, behavior: 'smooth' });
       });
     })();
+
+    // ---- Clickable service cards ----
+    document.querySelectorAll('[data-package]').forEach(function(card) {
+      card.addEventListener('click', function() {
+        var pkg = this.getAttribute('data-package');
+        var select = document.getElementById('formPackage');
+        select.value = pkg;
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // ---- AJAX form submission ----
+    var form = document.getElementById('bookingForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = form.querySelector('button');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          form.innerHTML = '<div class="form-success">Thanks! We\'ll be in touch within the next 24 hours to set up your appointment.</div>';
+        } else {
+          btn.textContent = 'Submit';
+          btn.disabled = false;
+          alert('Something went wrong. Please call or text us instead.');
+        }
+      }).catch(function() {
+        btn.textContent = 'Submit';
+        btn.disabled = false;
+        alert('Something went wrong. Please call or text us instead.');
+      });
+    });
+
+    // ---- Gallery lightbox ----
+    (function() {
+      var lb = document.createElement('div');
+      lb.className = 'lightbox';
+      lb.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><img src="" alt="" />';
+      document.body.appendChild(lb);
+
+      var img = lb.querySelector('img');
+      var isOpen = false;
+
+      function open(src, alt) {
+        img.src = src;
+        img.alt = alt;
+        lb.classList.add('open');
+        isOpen = true;
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        lb.classList.remove('open');
+        isOpen = false;
+        document.body.style.overflow = '';
+        img.src = '';
+      }
+
+      document.querySelectorAll('.gallery-item').forEach(function(item) {
+        item.addEventListener('click', function(e) {
+          var el = this.querySelector('img');
+          if (el) open(el.src, el.alt);
+        });
+      });
+
+      lb.addEventListener('click', function(e) {
+        if (e.target === lb || e.target === lb.querySelector('.lightbox-close')) close();
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isOpen) close();
+      });
+    })();
+
   </script>
 </body>
 </html>

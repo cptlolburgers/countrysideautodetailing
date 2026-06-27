@@ -24,7 +24,10 @@
       "WebFetch(domain:mikepennisi.com)",
       "Bash(curl -sI \"https://share.google/pKRyIuTthyEMsRUlI\")",
       "Bash(python3 -c \"from PIL import Image; print\\('pillow'\\)\")",
-      "Bash(node -e \"const sharp = require\\('sharp'\\); sharp\\('images/logo.png'\\).resize\\(200,200\\).toFile\\('images/logo-small.png'\\).then\\(\\(\\) => console.log\\('done'\\)\\)\")"
+      "Bash(node -e \"const sharp = require\\('sharp'\\); sharp\\('images/logo.png'\\).resize\\(200,200\\).toFile\\('images/logo-small.png'\\).then\\(\\(\\) => console.log\\('done'\\)\\)\")",
+      "Bash(gh auth *)",
+      "Bash(git credential-manager-core *)",
+      "Bash(cmdkey /list)"
     ]
   }
 }
