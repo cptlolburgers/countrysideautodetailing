@@ -44,7 +44,7 @@
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
+      "ratingValue": "5.0",
       "bestRating": "5",
       "reviewCount": "50"
     }
@@ -235,11 +235,19 @@
         radial-gradient(ellipse 500px 700px at 20% 70%, rgba(196,30,42,0.05), transparent);
       pointer-events: none;
     }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 100px;
+      background: linear-gradient(to top, #0f0d0a, transparent);
+      pointer-events: none;
+    }
     .bg-car {
       position: absolute;
       pointer-events: none;
       opacity: 0.04;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 130'%3E%3Cpath d='M40 105 L45 80 L58 68 L75 62 L90 58 L110 55 L190 55 L210 58 L225 62 L240 65 L255 72 L265 85 L270 95 L268 103 L258 108 L245 110 L55 110 L42 108 Z' fill='%23c41e2a'/%3E%3Ccircle cx='100' cy='110' r='16' fill='%23c41e2a'/%3E%3Ccircle cx='210' cy='110' r='16' fill='%23c41e2a'/%3E%3C/svg%3E") no-repeat center / contain;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 130'%3E%3Cpath d='M38 106 L35 80 L50 66 L72 48 L115 42 L170 42 L205 60 L258 60 L272 74 L274 96 L264 108 L250 112 L48 112 Z' fill='%23c41e2a'/%3E%3Ccircle cx='85' cy='106' r='15' fill='%23c41e2a'/%3E%3Ccircle cx='220' cy='106' r='15' fill='%23c41e2a'/%3E%3C/svg%3E") no-repeat center / contain;
     }
     .hero-logo {
       max-width: min(430px, 80vw);
@@ -308,7 +316,10 @@
     /* ===== ABOUT ===== */
     .about {
       padding: 120px 0;
-      background: #0f0d0a;
+      background:
+        radial-gradient(ellipse 600px 400px at 70% 50%, rgba(255,255,255,0.03), transparent),
+        radial-gradient(ellipse 400px 500px at 30% 40%, rgba(240,237,232,0.02), transparent),
+        #0f0d0a;
       position: relative;
       overflow: hidden;
     }
@@ -321,7 +332,7 @@
     .about-image {
       width: 100%;
       aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #120e0e, #1a1414);
+      background: linear-gradient(135deg, #181412, #1e1816);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -332,7 +343,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      border: 1px solid rgba(196,30,42,0.12);
+      border: 1px solid rgba(240,237,232,0.1);
       pointer-events: none;
     }
     .about-image .placeholder-icon {
@@ -353,7 +364,6 @@
       font-size: 1rem;
       letter-spacing: 0.5px;
     }
-
     /* ===== SERVICES ===== */
     .services {
       padding: 120px 0;
@@ -742,14 +752,25 @@
 
     /* ===== FOOTER ===== */
     footer {
-      padding: 48px 0 32px;
+      padding: 24px 0 20px;
       border-top: 1px solid rgba(196,30,42,0.08);
     }
     footer .container {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-memorial {
+      font-size: 0.8rem;
+      color: #6a6258;
+      font-style: italic;
+    }
+    .footer-bottom {
+      display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+      width: 100%;
       gap: 16px;
     }
     footer .copyright {
@@ -827,7 +848,7 @@
       .cta-buttons .btn { width: 100%; max-width: 320px; justify-content: center; }
       .section-sub { max-width: 100%; }
 
-      footer .container { flex-direction: column; text-align: center; gap: 12px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
     }
     @media (max-width: 480px) {
       .test-arrow { display: none; }
@@ -877,7 +898,7 @@
       <div class="hero-badges reveal visible">
         <div><span class="badge-icon">◈</span> <strong>We Come to You</strong></div>
         <div><span class="badge-icon">◆</span> <strong>Premium Products Only</strong></div>
-        <div><span class="badge-icon">★</span> <strong>4.9 Star Rating</strong></div>
+        <div><span class="badge-icon">★</span> <strong>5.0 Star Rating</strong></div>
       </div>
     </div>
   </section>
@@ -908,7 +929,7 @@
           We don't consider a job complete until the paint reads zero contaminants
           and every surface is restored to its original luster.
         </p>
-        <div class="about-signature">Zane, Josh &amp; Dustin - Founders</div>
+        <div class="about-signature">Zane, Josh &amp; Dustin — Founders</div>
       </div>
     </div>
   </section>
@@ -948,10 +969,15 @@
         <div class="service-card">
           <div class="card-head"><h3>Quick Wash &amp; Vac</h3><span class="icon">◈</span></div>
           <span class="price">$45 – $60</span>
+          <p class="service-subtitle">Exterior:</p>
           <ul>
             <li>High-pressure rinse</li>
             <li>Foam hand wash &amp; towel dry</li>
             <li>Wheels cleaned</li>
+            <li>Door jambs wiped clean</li>
+          </ul>
+          <p class="service-subtitle">Interior:</p>
+          <ul>
             <li>Full vacuum of seats, carpets, mats &amp; trunk</li>
             <li>Floor mats removed, shaken out &amp; vacuumed</li>
             <li>Dashboard, center console &amp; steering wheel cleaned</li>
@@ -965,6 +991,8 @@
             <ul>
               <li>Thorough vacuum of front/rear carpets, seats &amp; trunk</li>
               <li>Floor mats removed, shaken out &amp; vacuumed</li>
+              <li>Vacuum between and under seats</li>
+              <li>Door pockets and cupholders vacuumed</li>
               <li>Quick dust-off of steering wheel &amp; dashboard</li>
             </ul>
           </div>
@@ -975,6 +1003,8 @@
               <li>High-pressure rinse</li>
               <li>Foam hand wash</li>
               <li>Wheel wipe-down</li>
+              <li>Door jambs wiped clean</li>
+              <li>Mirrors and windows cleaned</li>
               <li>Streak-free towel dry</li>
             </ul>
           </div>
@@ -1129,13 +1159,16 @@
   <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container">
-      <div class="copyright">
-        &copy; 2026 Countryside Auto Detailing. All rights reserved.
-      </div>
       <div class="socials">
         <a href="https://share.google/pKRyIuTthyEMsRUlI">Google Reviews</a>
         <a href="https://www.instagram.com/countrysideautodetail" target="_blank">Instagram</a>
         <a href="https://www.facebook.com/profile.php?id=61591196199835" target="_blank">Facebook</a>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          &copy; 2026 Countryside Auto Detailing. All rights reserved.
+        </div>
+        <div class="footer-memorial">In memory of our co-founder Josh, who helped build this dream.</div>
       </div>
     </div>
   </footer>
