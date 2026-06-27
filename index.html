@@ -77,7 +77,7 @@
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    html, body { overflow-x: hidden; }
+    body { overflow-x: clip; }
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       font-weight: 300;
@@ -86,6 +86,7 @@
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
+    .hero, .about, .services, .how, .gallery, .cta { overflow-x: clip; }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
 
@@ -190,7 +191,7 @@
     }
     nav.scrolled .logo { opacity: 1; }
     .logo img {
-      height: 42px;
+      height: 48px;
       width: auto;
       display: block;
     }
@@ -345,7 +346,8 @@
     }
     .about-image {
       width: 100%;
-      aspect-ratio: 4/3;
+      aspect-ratio: 3/4;
+      max-height: 600px;
       background: linear-gradient(135deg, #181412, #1e1816);
       display: flex;
       align-items: center;
@@ -615,11 +617,13 @@
     }
     .gallery-header { margin-bottom: 48px; }
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 4px;
     }
     .gallery-item {
+      flex: 0 0 calc((100% - 8px) / 3);
       aspect-ratio: 1;
       background: linear-gradient(135deg, #120e0e, #1a1414);
       display: flex;
@@ -663,6 +667,8 @@
       display: flex;
       gap: 30px;
       overflow-x: auto;
+      width: 100%;
+      max-width: 100%;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       scroll-behavior: auto;
@@ -907,7 +913,6 @@
       .service-stack { flex-direction: row; grid-column: 1 / -1; }
       .steps { grid-template-columns: repeat(2, 1fr); }
       .step:not(:last-child)::after { display: none; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
@@ -944,8 +949,8 @@
       .steps { grid-template-columns: 1fr; gap: 28px; }
       .step:not(:last-child)::after { display: none; }
       .step { max-width: 320px; margin: 0 auto; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item { aspect-ratio: 4/3; }
+      .gallery-grid { gap: 2px; padding: 0 24px; }
+      .gallery-item { flex: 0 0 calc((100% - 2px) / 2); aspect-ratio: 4/3; }
       .testimonial-card { flex: 0 0 280px; padding: 28px; }
 
       .hero-content h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
@@ -970,8 +975,8 @@
       .section-title { font-size: 1.6rem; }
       .hero-badges { flex-direction: column; gap: 14px; align-items: center; }
       .hero-badges div { font-size: 0.85rem; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
-      .gallery-item { aspect-ratio: 1; }
+      .gallery-grid { gap: 2px; }
+      .gallery-item { flex: 0 0 calc((100% - 2px) / 2); aspect-ratio: 1; }
       .btn { padding: 14px 28px; font-size: 0.8rem; }
     }
 
@@ -1088,10 +1093,7 @@
     <div class="bg-car" style="width:15%;height:20%;top:60%;right:0;opacity:0.03;transform:rotate(8deg);"></div>
     <div class="container about-grid">
       <div class="about-image reveal">
-        <picture>
-          <source srcset="https://placehold.co/800x600/0f0d0a/c41e2a?text=Team+at+Work&font=inter" type="image/webp" />
-          <img src="https://placehold.co/800x600/0f0d0a/c41e2a?text=Team+at+Work&font=inter" alt="Countryside Auto Detailing team with professional-grade detailing equipment" width="800" height="600" loading="lazy" />
-        </picture>
+        <img src="images/car-photos/foam-spray-tesla-model3.jpg" alt="Countryside Auto Detailing team performing interior foam detailing on a Tesla Model 3 with professional-grade equipment" width="3072" height="4080" loading="lazy" />
       </div>
       <div class="about-text reveal">
         <span class="section-label">About Us</span>
@@ -1266,63 +1268,63 @@
         <div class="testimonial-card">
           <div class="quote">"</div>
           <div class="stars">★★★★★</div>
-          <blockquote>Incredible attention to detail. They brought my car back to life, the paint has never looked this deep and the interior feels brand new. Couldn't be happier with the result.</blockquote>
+          <blockquote>Didn't think my paint could look this good again honestly. Every time I walk up to the car now I just kinda stare at it for a second. Interior smells brand new too.</blockquote>
           <div class="author">Michael Torres</div>
           <div class="car-model">Porsche 911 Carrera</div>
         </div>
         <div class="testimonial-card">
           <div class="quote">"</div>
           <div class="stars">★★★★★</div>
-          <blockquote>I was skeptical about mobile detailing, but the quick vac alone was worth it. My car has never been this clean.</blockquote>
+          <blockquote>Quick vac was way more thorough than I expected. Not going back to the car wash.</blockquote>
           <div class="author">Sarah Chen</div>
           <div class="car-model">Mercedes-Benz GLE 53</div>
         </div>
         <div class="testimonial-card">
           <div class="quote">"</div>
           <div class="stars">★★★★★</div>
-          <blockquote>They spent four hours on interior restoration alone. My two-year-old's "art projects" are completely gone. The leather feels brand new.</blockquote>
+          <blockquote>Four hours just on the inside. My toddler had done a number on the backseat — markers, crushed goldfish, some mystery stain I'd been ignoring for months. They got every trace of it out. Even the leather on the door cards looks factory fresh again, and I was ready to just live with it. Worth every penny.</blockquote>
           <div class="author">James Whitfield</div>
           <div class="car-model">BMW X7 M50i</div>
         </div>
         <div class="testimonial-card">
           <div class="quote">"</div>
           <div class="stars">★★★★★</div>
-          <blockquote>I run a small exotic car collection and use Countryside exclusively. They're punctual, meticulous, and use only top-tier products. Highly recommend.</blockquote>
+          <blockquote>Only detailer I trust with my collection. Show up on time, do it right, no excuses.</blockquote>
           <div class="author">Victoria Aldridge</div>
           <div class="car-model">Lamborghini Urus</div>
         </div>
         <div class="testimonial-card">
           <div class="quote">"</div>
           <div class="stars">★★★★★</div>
-          <blockquote>Scheduled a full detail for my husband's birthday surprise. They made his 8-year-old F-150 look like it just rolled off the lot. The paint correction was unbelievable.</blockquote>
+          <blockquote>Got this for my husband's birthday. He babies that truck but it's 8 years old and was starting to show it. When he saw it after they were done he just stood there laughing. Said I set the bar too high now.</blockquote>
           <div class="author">Rachel Kim</div>
           <div class="car-model">Ford F-150 Platinum</div>
         </div>
         <div class="testimonial-card">
           <div class="quote">"</div>
           <div class="stars">★★★★★</div>
-          <blockquote>Best detailer in the Atlanta area, hands down. I've tried several shops in Buckhead and nothing compares to having these guys come to you. The convenience alone is worth it, but the quality keeps me coming back.</blockquote>
+          <blockquote>Tried other places. These guys are better. On my third detail and not switching.</blockquote>
           <div class="author">David Okonkwo</div>
           <div class="car-model">Audi RS Q8</div>
         </div>
         <div class="testimonial-card">
           <div class="quote">"</div>
           <div class="stars">★★★★★</div>
-          <blockquote>My Tesla was a disaster after a road trip with two dogs. They got every single hair out, conditioned the white seats back to new, and even removed a scratch I thought was permanent. These guys are wizards.</blockquote>
+          <blockquote>Took my dogs on a road trip and the Tesla was trashed. Hair everywhere, white seats looking rough, and a scratch on the door I'd given up on. They got all of it. I don't know how you get dog hair out of carpet that well but they did.</blockquote>
           <div class="author">Lauren Mitchell</div>
           <div class="car-model">Tesla Model Y</div>
         </div>
         <div class="testimonial-card">
           <div class="quote">"</div>
           <div class="stars">★★★★★</div>
-          <blockquote>Been using Countryside for over a year now on my Corvette. They come to my office in Sandy Springs while I'm working — car is spotless by the time I leave. The convenience is unbeatable and the quality is dealership-level.</blockquote>
+          <blockquote>They come to my office in Sandy Springs while I'm working and by the time I walk out the Corvette is done. Been doing it for over a year now and it's just part of my routine at this point. Car always looks right.</blockquote>
           <div class="author">Robert Chang</div>
           <div class="car-model">Chevrolet Corvette C8</div>
         </div>
         <div class="testimonial-card">
           <div class="quote">"</div>
           <div class="stars">★★★★★</div>
-          <blockquote>Had them do a full detail before selling my car. The buyer asked if I'd ever even sat in it. Got $2,000 more than I expected on the sale. Best money I've spent on a detail, period.</blockquote>
+          <blockquote>First buyer that looked at it bought it. Said the back seat looked unused. That was all the detail.</blockquote>
           <div class="author">Tanya Brooks</div>
           <div class="car-model">Lexus RX 450h</div>
         </div>
@@ -1360,12 +1362,12 @@
           </select>
         </div>
         <div class="form-row form-split">
-          <input type="text" name="name" placeholder="Your name" required />
-          <input type="tel" name="phone" placeholder="Phone number" required />
+          <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
+          <input type="tel" name="phone" placeholder="Phone number" autocomplete="tel" required />
         </div>
         <div class="form-row form-split">
-          <input type="email" name="email" placeholder="Email (optional)" />
-          <input type="text" name="vehicle" placeholder="Vehicle (year, make, model)" />
+          <input type="email" name="email" placeholder="Email (optional)" autocomplete="email" />
+          <input type="text" name="vehicle" placeholder="Vehicle (year, make, model)" autocomplete="off" />
         </div>
         <div class="form-row form-split">
           <select name="city">
