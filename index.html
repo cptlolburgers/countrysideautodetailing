@@ -663,15 +663,17 @@
       display: flex;
       gap: 30px;
       overflow-x: auto;
-      scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       scroll-behavior: auto;
+      cursor: grab;
     }
     .testimonial-slider::-webkit-scrollbar { display: none; }
+    .testimonial-slider:active { cursor: grabbing; }
+    .testimonial-slider.dragging,
+    .testimonial-slider.sliding { cursor: grabbing; }
     .testimonial-card {
       flex: 0 0 380px;
-      scroll-snap-align: start;
       padding: 40px;
       background: #14120e;
       border: 1px solid rgba(196,30,42,0.08);
@@ -992,7 +994,7 @@
       pointer-events: auto;
     }
     .lightbox img {
-      max-width: 90vw;
+      max-width: calc(95vw - 120px);
       max-height: 90vh;
       object-fit: contain;
       border-radius: 4px;
@@ -1016,6 +1018,28 @@
       transition: background 0.2s;
     }
     .lightbox-close:hover { background: rgba(255,255,255,0.18); }
+    .lightbox-stage {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 95vw;
+      max-height: 95vh;
+    }
+    .lightbox-arrow {
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: #f0ede8;
+      font-size: 1.6rem;
+      line-height: 44px;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+    .lightbox-arrow:hover { background: rgba(255,255,255,0.18); }
   </style>
 </head>
 <body>
@@ -1267,6 +1291,41 @@
           <div class="author">Victoria Aldridge</div>
           <div class="car-model">Lamborghini Urus</div>
         </div>
+        <div class="testimonial-card">
+          <div class="quote">"</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>Scheduled a full detail for my husband's birthday surprise. They made his 8-year-old F-150 look like it just rolled off the lot. The paint correction was unbelievable.</blockquote>
+          <div class="author">Rachel Kim</div>
+          <div class="car-model">Ford F-150 Platinum</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote">"</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>Best detailer in the Atlanta area, hands down. I've tried several shops in Buckhead and nothing compares to having these guys come to you. The convenience alone is worth it, but the quality keeps me coming back.</blockquote>
+          <div class="author">David Okonkwo</div>
+          <div class="car-model">Audi RS Q8</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote">"</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>My Tesla was a disaster after a road trip with two dogs. They got every single hair out, conditioned the white seats back to new, and even removed a scratch I thought was permanent. These guys are wizards.</blockquote>
+          <div class="author">Lauren Mitchell</div>
+          <div class="car-model">Tesla Model Y</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote">"</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>Been using Countryside for over a year now on my Corvette. They come to my office in Sandy Springs while I'm working — car is spotless by the time I leave. The convenience is unbeatable and the quality is dealership-level.</blockquote>
+          <div class="author">Robert Chang</div>
+          <div class="car-model">Chevrolet Corvette C8</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote">"</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>Had them do a full detail before selling my car. The buyer asked if I'd ever even sat in it. Got $2,000 more than I expected on the sale. Best money I've spent on a detail, period.</blockquote>
+          <div class="author">Tanya Brooks</div>
+          <div class="car-model">Lexus RX 450h</div>
+        </div>
       </div>
         <button class="test-arrow test-arrow-right" id="testArrowRight">›</button>
     </div>
@@ -1393,17 +1452,67 @@
     );
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // ---- Testimonial arrows ----
+    // ---- Testimonial slider: arrows + drag ----
     (function() {
       var slider = document.getElementById('testimonialSlider');
       if (!slider) return;
-      var step = slider.querySelector('.testimonial-card').offsetWidth + 30;
+      var step = function() { return slider.querySelector('.testimonial-card').offsetWidth + 30; };
 
       document.getElementById('testArrowLeft').addEventListener('click', function() {
-        slider.scrollBy({ left: -step, behavior: 'smooth' });
+        slider.scrollBy({ left: -step(), behavior: 'smooth' });
       });
       document.getElementById('testArrowRight').addEventListener('click', function() {
-        slider.scrollBy({ left: step, behavior: 'smooth' });
+        slider.scrollBy({ left: step(), behavior: 'smooth' });
+      });
+
+      var dragging = false, startX, scrollStart;
+      var velX = 0, prevX = 0, prevT = 0, momentumId;
+
+      function stopMomentum() {
+        if (momentumId) { cancelAnimationFrame(momentumId); momentumId = null; }
+        slider.classList.remove('sliding');
+      }
+
+      slider.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        stopMomentum();
+        dragging = true;
+        slider.classList.add('dragging');
+        startX = e.pageX;
+        scrollStart = slider.scrollLeft;
+        prevX = e.pageX;
+        prevT = Date.now();
+        velX = 0;
+      });
+
+      document.addEventListener('mousemove', function(e) {
+        if (!dragging) return;
+        var now = Date.now();
+        var dt = now - prevT;
+        if (dt > 5) {
+          velX = (prevX - e.pageX) / dt; // px/ms, positive = scrolling right
+          prevX = e.pageX;
+          prevT = now;
+        }
+        slider.scrollLeft = scrollStart + (startX - e.pageX);
+      });
+
+      document.addEventListener('mouseup', function() {
+        if (!dragging) return;
+        dragging = false;
+        slider.classList.remove('dragging');
+
+        var v = velX * 16; // px per frame
+        if (Math.abs(v) < 2) return;
+
+        slider.classList.add('sliding');
+        function tick() {
+          slider.scrollLeft += v;
+          v *= 0.92;
+          if (Math.abs(v) < 0.5) { stopMomentum(); return; }
+          momentumId = requestAnimationFrame(tick);
+        }
+        momentumId = requestAnimationFrame(tick);
       });
     })();
 
@@ -1446,21 +1555,36 @@
 
     // ---- Gallery lightbox ----
     (function() {
+      var items = [];
+      document.querySelectorAll('.gallery-item img').forEach(function(el) {
+        items.push({ src: el.src, alt: el.alt });
+      });
+      if (!items.length) return;
+
+      var current = 0;
       var lb = document.createElement('div');
       lb.className = 'lightbox';
-      lb.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><img src="" alt="" />';
+      lb.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><div class="lightbox-stage"><button class="lightbox-arrow lightbox-arrow-left" aria-label="Previous">‹</button><img src="" alt="" /><button class="lightbox-arrow lightbox-arrow-right" aria-label="Next">›</button></div>';
       document.body.appendChild(lb);
 
       var img = lb.querySelector('img');
       var isOpen = false;
 
-      function open(src, alt) {
-        img.src = src;
-        img.alt = alt;
+      function show(i) {
+        current = i;
+        img.src = items[current].src;
+        img.alt = items[current].alt;
+      }
+
+      function open(i) {
+        show(i);
         lb.classList.add('open');
         isOpen = true;
         document.body.style.overflow = 'hidden';
       }
+
+      function next() { show((current + 1) % items.length); }
+      function prev() { show((current - 1 + items.length) % items.length); }
 
       function close() {
         lb.classList.remove('open');
@@ -1469,11 +1593,19 @@
         img.src = '';
       }
 
-      document.querySelectorAll('.gallery-item').forEach(function(item) {
-        item.addEventListener('click', function(e) {
-          var el = this.querySelector('img');
-          if (el) open(el.src, el.alt);
+      document.querySelectorAll('.gallery-item').forEach(function(item, i) {
+        item.addEventListener('click', function() {
+          open(i);
         });
+      });
+
+      document.querySelector('.lightbox-arrow-left').addEventListener('click', function(e) {
+        e.stopPropagation();
+        prev();
+      });
+      document.querySelector('.lightbox-arrow-right').addEventListener('click', function(e) {
+        e.stopPropagation();
+        next();
       });
 
       lb.addEventListener('click', function(e) {
@@ -1481,7 +1613,10 @@
       });
 
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && isOpen) close();
+        if (!isOpen) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') prev();
+        if (e.key === 'ArrowRight') next();
       });
     })();
 
