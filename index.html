@@ -1425,8 +1425,13 @@
   <script>
     // ---- Nav scroll ----
     const navbar = document.getElementById('navbar');
+    const logo = navbar.querySelector('.logo');
     window.addEventListener('scroll', function() {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
+      var pct = Math.min(1, Math.max(0, (window.scrollY - 200) / 350));
+      navbar.style.background = 'rgba(10,10,10,' + (0.92 * pct).toFixed(3) + ')';
+      navbar.style.backdropFilter = 'blur(' + (12 * pct).toFixed(1) + 'px)';
+      navbar.style.borderBottomColor = 'rgba(60,60,60,' + (0.3 * pct).toFixed(3) + ')';
+      logo.style.opacity = pct.toFixed(3);
     });
 
     // ---- Hamburger ----
