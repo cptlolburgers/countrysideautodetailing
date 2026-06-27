@@ -776,6 +776,7 @@
     footer .copyright {
       font-size: 0.8rem;
       color: #6a6258;
+      order: -1;
     }
     footer .socials {
       display: flex;
@@ -849,6 +850,7 @@
       .section-sub { max-width: 100%; }
 
       .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-bottom .copyright { order: 0; }
     }
     @media (max-width: 480px) {
       .test-arrow { display: none; }
@@ -1165,10 +1167,10 @@
         <a href="https://www.facebook.com/profile.php?id=61591196199835" target="_blank">Facebook</a>
       </div>
       <div class="footer-bottom">
+        <div class="footer-memorial">In loving memory of our co-founder, Josh, who helped build this dream.</div>
         <div class="copyright">
           &copy; 2026 Countryside Auto Detailing. All rights reserved.
         </div>
-        <div class="footer-memorial">In memory of our co-founder Josh, who helped build this dream.</div>
       </div>
     </div>
   </footer>
